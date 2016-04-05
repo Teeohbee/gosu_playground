@@ -18,6 +18,8 @@ class GameWindow < Gosu::Window
     @player.turn_left if Gosu::button_down? Gosu::KbLeft
     @player.turn_right if Gosu::button_down? Gosu::KbRight
     @player.accelerate if Gosu::button_down? Gosu::KbUp
+    @player.reverse if Gosu::button_down? Gosu::KbDown
+
     @player.move
     @player.collect_stars(@stars)
 
