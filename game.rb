@@ -6,13 +6,33 @@ class GameWindow < Gosu::Window
     self.caption = "Gosu Tutorial Game"
 
     @background_image = Gosu::Image.new("space.png", tileable: true)
+
+    @player = Player.new
+    @player.warp(320, 240)
   end
 
   def update
+    if Gosu::button_down? Gosu::KbLeft then
+      @player.turn_left
+    end
+    if Gosu::button_down? Gosu::KbRight then
+      @player.turn_right
+    end
+    if Gosu::button_down? Gosu::KbUp  then
+      @player.accelerate
+    end
+    @player.move
   end
 
   def draw
     @background_image.draw(0, 0, 0)
+    @player.draw
+  end
+
+  def button_down(id)
+    if id == Gosu::KbEscape
+      close
+    end
   end
 end
 
